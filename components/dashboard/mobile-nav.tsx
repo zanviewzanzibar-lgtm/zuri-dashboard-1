@@ -63,7 +63,7 @@ export function MobileNav({
   return (
     <>
       {/* Bottom Tab Bar - Always visible on mobile */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-black/90 via-black/80 to-black/60 backdrop-blur-2xl border-t border-white/[0.08] safe-area-bottom">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-background via-background/95 to-background/90 backdrop-blur-2xl border-t border-border/50 safe-area-bottom shadow-[0_-4px_24px_rgba(0,0,0,0.1)] dark:shadow-[0_-4px_32px_rgba(0,0,0,0.4)]">
         <div className="flex items-center justify-around px-2 py-2">
           {bottomTabs.map((tabId) => {
             const item = navItems.find((n) => n.id === tabId)!;
@@ -76,15 +76,15 @@ export function MobileNav({
                 className={cn(
                   "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-300 min-w-[56px]",
                   isActive
-                    ? "text-cyan bg-cyan/10"
+                    ? "text-gold bg-gold/10"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <div className="relative">
                   {isActive && (
-                    <div className="absolute inset-0 bg-cyan blur-lg opacity-40" />
+                    <div className="absolute inset-0 bg-gold blur-lg opacity-30" />
                   )}
-                  <Icon className={cn("relative w-5 h-5", isActive && "text-cyan")} />
+                  <Icon className={cn("relative w-5 h-5", isActive && "text-gold")} />
                 </div>
                 <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
               </button>
@@ -114,41 +114,41 @@ export function MobileNav({
       >
         {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+          className="absolute inset-0 bg-background/80 backdrop-blur-xl"
           onClick={() => onOpenChange(false)}
         />
 
         {/* Menu Panel */}
         <div
           className={cn(
-            "absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/95 to-black/90 border-t border-white/[0.08] rounded-t-3xl transition-transform duration-500 ease-out max-h-[85vh] overflow-hidden",
+            "absolute inset-x-0 bottom-0 bg-gradient-to-t from-card via-card/98 to-card/95 border-t border-border/50 rounded-t-3xl transition-transform duration-500 ease-out max-h-[85vh] overflow-hidden shadow-2xl",
             isOpen ? "translate-y-0" : "translate-y-full"
           )}
         >
           {/* Handle */}
           <div className="flex justify-center pt-3 pb-2">
-            <div className="w-10 h-1 rounded-full bg-white/20" />
+            <div className="w-10 h-1 rounded-full bg-border" />
           </div>
 
           {/* Header */}
-          <div className="flex items-center justify-between px-5 pb-4 border-b border-white/[0.06]">
+          <div className="flex items-center justify-between px-5 pb-4 border-b border-border/50">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="absolute inset-0 rounded-xl bg-cyan/30 blur-xl opacity-60" />
-                <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan to-cyan/70 flex items-center justify-center">
-                  <Brain className="w-5 h-5 text-primary-foreground" />
+                <div className="absolute inset-0 rounded-xl bg-gold/20 blur-xl opacity-60" />
+                <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-gold to-gold/80 flex items-center justify-center glow-gold">
+                  <Brain className="w-5 h-5 text-background" />
                 </div>
               </div>
               <div>
-                <h2 className="font-bold text-lg text-foreground tracking-tight">ZURI AI</h2>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70">
+                <h2 className="font-serif font-semibold text-lg text-foreground tracking-tight">ZURI</h2>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                   Grand Azure Hotel
                 </p>
               </div>
             </div>
             <button
               onClick={() => onOpenChange(false)}
-              className="p-2 rounded-xl hover:bg-white/[0.04] transition-colors"
+              className="p-2.5 rounded-xl hover:bg-secondary/50 transition-colors"
             >
               <X className="w-5 h-5 text-muted-foreground" />
             </button>
@@ -166,8 +166,8 @@ export function MobileNav({
                     onClick={() => onSectionChange(item.id)}
                     className={cn(
                       "flex flex-col items-center gap-2 p-4 rounded-2xl transition-all duration-300",
-                      "hover:bg-white/[0.04] active:scale-95",
-                      isActive && "bg-cyan/10 border border-cyan/20"
+                      "hover:bg-secondary/50 active:scale-95",
+                      isActive && "bg-gold/10 border border-gold/25"
                     )}
                     style={{
                       animationDelay: `${index * 50}ms`,
@@ -175,14 +175,14 @@ export function MobileNav({
                   >
                     <div className="relative">
                       {isActive && (
-                        <div className="absolute inset-0 bg-cyan blur-xl opacity-40" />
+                        <div className="absolute inset-0 bg-gold blur-xl opacity-30" />
                       )}
                       <div
                         className={cn(
                           "relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
                           isActive
-                            ? "bg-cyan/20 text-cyan"
-                            : "bg-white/[0.04] text-muted-foreground"
+                            ? "bg-gold/15 text-gold"
+                            : "bg-secondary/50 text-muted-foreground"
                         )}
                       >
                         <Icon className="w-6 h-6" />
@@ -191,7 +191,7 @@ export function MobileNav({
                     <span
                       className={cn(
                         "text-xs font-medium text-center",
-                        isActive ? "text-cyan" : "text-muted-foreground"
+                        isActive ? "text-gold" : "text-muted-foreground"
                       )}
                     >
                       {item.label}

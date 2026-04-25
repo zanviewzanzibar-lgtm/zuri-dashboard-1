@@ -65,7 +65,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/95">
+    <div className="min-h-screen bg-background">
       {/* Desktop Sidebar */}
       <div className="hidden lg:block">
         <Sidebar
@@ -90,7 +90,7 @@ export default function DashboardPage() {
       {/* Main Content */}
       <main
         className={`transition-all duration-500 ease-out ${
-          sidebarCollapsed ? "lg:ml-[72px]" : "lg:ml-[260px]"
+          sidebarCollapsed ? "lg:ml-[72px]" : "lg:ml-[280px]"
         }`}
       >
         <Header

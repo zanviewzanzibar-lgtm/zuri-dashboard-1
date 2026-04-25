@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Sun, CloudSun, Menu } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Sun, Moon, Menu, Bell } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface HeaderProps {
   activeSection: string;
@@ -17,7 +17,6 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
     const timer = setInterval(() => {
       const now = new Date();
       setCurrentTime(now);
-      // Zanzibar time check (UTC+3)
       const zanzibarHour = now.getUTCHours() + 3;
       setIsDay(zanzibarHour >= 6 && zanzibarHour < 18);
     }, 1000);
@@ -36,8 +35,8 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", {
-      weekday: "short",
-      month: "short",
+      weekday: "long",
+      month: "long",
       day: "numeric",
       timeZone: "Africa/Dar_es_Salaam",
     });
@@ -47,83 +46,95 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
     overview: "Overview",
     staff: "Staff Command",
     guests: "Guests",
-    restaurants: "F&B",
+    restaurants: "Restaurants & Bars",
     security: "Security",
     housekeeping: "Housekeeping",
     maintenance: "Maintenance",
-    finance: "Finance",
+    finance: "Finance & Revenue",
     store: "Store & POS",
     zuri: "Zuri Brain",
     settings: "Settings",
   };
 
   return (
-    <header className="h-14 sm:h-16 flex items-center justify-between px-3 sm:px-6 sticky top-0 z-40 bg-gradient-to-r from-black/50 via-black/40 to-black/50 backdrop-blur-xl border-b border-white/[0.06]">
+    <header className="h-16 sm:h-20 flex items-center justify-between px-4 sm:px-8 sticky top-0 z-40 bg-gradient-to-r from-background/95 via-background/90 to-background/95 backdrop-blur-xl border-b border-border/50 shadow-sm">
       {/* Left - Menu button (mobile) + Section Title */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         {/* Mobile menu button */}
         <button
           onClick={onMenuClick}
-          className="lg:hidden p-2 -ml-2 rounded-xl hover:bg-white/[0.04] transition-colors"
+          className="lg:hidden p-2.5 -ml-2 rounded-xl hover:bg-secondary/50 transition-all duration-300 group"
         >
-          <Menu className="w-5 h-5 text-muted-foreground" />
+          <Menu className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
         </button>
         
-        <h2 className="text-base sm:text-xl font-semibold text-foreground tracking-tight">
-          {sectionTitles[activeSection] || "Dashboard"}
-        </h2>
+        <div>
+          <h2 className="text-xl sm:text-2xl font-serif font-semibold text-foreground tracking-tight">
+            {sectionTitles[activeSection] || "Dashboard"}
+          </h2>
+          <p className="text-xs text-muted-foreground font-medium hidden sm:block">
+            Grand Azure Hotel, Zanzibar
+          </p>
+        </div>
       </div>
 
-      {/* Center - Date/Time (hidden on very small screens) */}
-      <div className="hidden sm:flex flex-col items-center">
-        <div className="text-lg sm:text-2xl font-mono font-semibold text-cyan tabular-nums tracking-tight text-glow-cyan">
+      {/* Center - Date/Time */}
+      <div className="hidden md:flex flex-col items-center">
+        <div className="text-2xl lg:text-3xl font-mono font-semibold text-gold tabular-nums tracking-tight" style={{ textShadow: "0 0 30px oklch(0.78 0.14 80 / 0.4)" }}>
           {formatTime(currentTime)}
         </div>
-        <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.12em] text-muted-foreground/60 font-medium">
-          {formatDate(currentTime)} · Zanzibar
+        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium tracking-wide">
+          {formatDate(currentTime)}
         </div>
       </div>
 
       {/* Right - Status indicators */}
-      <div className="flex items-center gap-2 sm:gap-5">
+      <div className="flex items-center gap-3 sm:gap-5">
         {/* Live Indicator */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-red/5 border border-red/20">
-          <span className="relative flex h-1.5 sm:h-2 w-1.5 sm:w-2">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-red opacity-75 glow-pulse" />
-            <span className="relative inline-flex rounded-full h-1.5 sm:h-2 w-1.5 sm:w-2 bg-red" />
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald/10 border border-emerald/25 shadow-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald opacity-75 animate-ping" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald" />
           </span>
-          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] text-red">Live</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-emerald hidden sm:inline">Live</span>
         </div>
 
-        {/* Occupancy - hidden on mobile */}
-        <div className="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-green/5 border border-green/20 glow-green">
-          <span className="text-sm font-semibold tabular-nums text-green">87</span>
-          <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60">/100</span>
+        {/* Occupancy */}
+        <div className="hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/25 shadow-sm shadow-gold/20">
+          <span className="text-sm font-serif font-semibold tabular-nums text-gold">87</span>
+          <span className="text-xs text-muted-foreground">/100 rooms</span>
         </div>
 
-        {/* Weather - hidden on small mobile */}
-        <div className="hidden sm:flex items-center gap-2 text-muted-foreground/80">
+        {/* Weather */}
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 border border-border/50">
           {isDay ? (
-            <Sun className="w-4 h-4 text-amber" />
+            <Sun className="w-4 h-4 text-gold" />
           ) : (
-            <CloudSun className="w-4 h-4 text-muted-foreground" />
+            <Moon className="w-4 h-4 text-sapphire-light" />
           )}
-          <span className="text-sm font-medium tabular-nums">28°C</span>
+          <span className="text-sm font-medium tabular-nums text-foreground">28°C</span>
         </div>
+
+        {/* Notifications */}
+        <button className="relative p-2.5 rounded-xl hover:bg-secondary/50 transition-all duration-300 group">
+          <Bell className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose rounded-full border-2 border-background" />
+        </button>
 
         {/* User Avatar */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="relative group">
-            <div className="absolute -inset-0.5 rounded-full bg-cyan/20 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
-            <Avatar className="relative h-8 w-8 sm:h-9 sm:w-9 border-2 border-white/10 group-hover:border-cyan/30 transition-colors duration-300">
-              <AvatarFallback className="bg-gradient-to-br from-cyan/20 to-cyan/5 text-cyan text-xs sm:text-sm font-semibold">
+        <div className="flex items-center gap-3">
+          <div className="relative group cursor-pointer">
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 opacity-0 group-hover:opacity-100 blur transition-all duration-500" />
+            <Avatar className="relative h-10 w-10 border-2 border-gold/30 group-hover:border-gold/60 transition-all duration-300 shadow-lg">
+              <AvatarImage src="/avatars/owner.jpg" alt="Owner" />
+              <AvatarFallback className="bg-gradient-to-br from-gold/20 to-gold/5 text-gold text-sm font-serif font-semibold">
                 RE
               </AvatarFallback>
             </Avatar>
           </div>
           <div className="hidden xl:block">
             <p className="text-sm font-medium text-foreground">Rer</p>
-            <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">Owner</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Owner</p>
           </div>
         </div>
       </div>
