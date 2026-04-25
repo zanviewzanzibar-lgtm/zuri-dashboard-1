@@ -66,8 +66,8 @@ export function Sidebar({
           </div>
           {!collapsed && (
             <div className="slide-in-left">
-              <h1 className="font-bold text-lg text-foreground tracking-tight">ZURI AI</h1>
-              <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70">Grand Azure Hotel</p>
+              <h1 className="font-bold text-lg text-foreground tracking-tight font-mono">ZURI AI</h1>
+              <p className="text-[10px] uppercase tracking-[0.15em] text-cyan font-medium">GRAND AZURE</p>
             </div>
           )}
         </div>

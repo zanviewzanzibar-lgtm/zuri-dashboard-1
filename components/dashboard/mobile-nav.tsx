@@ -140,9 +140,9 @@ export function MobileNav({
                 </div>
               </div>
               <div>
-                <h2 className="font-bold text-lg text-foreground tracking-tight">ZURI AI</h2>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70">
-                  Grand Azure Hotel
+                <h2 className="font-bold text-lg text-foreground tracking-tight font-mono">ZURI AI</h2>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-cyan font-medium">
+                  GRAND AZURE
                 </p>
               </div>
             </div>

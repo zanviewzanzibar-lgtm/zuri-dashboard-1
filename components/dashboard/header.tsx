@@ -59,8 +59,8 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
 
   return (
     <header className="h-14 sm:h-16 flex items-center justify-between px-3 sm:px-6 sticky top-0 z-40 bg-gradient-to-r from-black/50 via-black/40 to-black/50 backdrop-blur-xl border-b border-white/[0.06]">
-      {/* Left - Menu button (mobile) + Section Title */}
-      <div className="flex items-center gap-3">
+      {/* Left - Menu button (mobile) + Section Title + Status */}
+      <div className="flex items-center gap-4">
         {/* Mobile menu button */}
         <button
           onClick={onMenuClick}
@@ -69,18 +69,26 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
           <Menu className="w-5 h-5 text-muted-foreground" />
         </button>
         
-        <h2 className="text-base sm:text-xl font-semibold text-foreground tracking-tight">
-          {sectionTitles[activeSection] || "Dashboard"}
-        </h2>
+        <div>
+          <h2 className="text-lg sm:text-xl font-semibold text-foreground tracking-tight">
+            {sectionTitles[activeSection] || "Dashboard"}
+          </h2>
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-green" />
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60 font-mono">
+              SYSTEMS NOMINAL // ZANZIBAR NODE 01
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Center - Date/Time (hidden on very small screens) */}
       <div className="hidden sm:flex flex-col items-center">
-        <div className="text-lg sm:text-2xl font-mono font-semibold text-cyan tabular-nums tracking-tight text-glow-cyan">
+        <div className="text-xl sm:text-3xl font-mono font-bold text-cyan tabular-nums tracking-wide text-glow-cyan">
           {formatTime(currentTime)}
         </div>
-        <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.12em] text-muted-foreground/60 font-medium">
-          {formatDate(currentTime)} · Zanzibar
+        <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70 font-medium mt-0.5">
+          {formatDate(currentTime).toUpperCase()}
         </div>
       </div>
 

@@ -31,48 +31,39 @@ type Kpi = {
 
 const kpiCards: Kpi[] = [
   {
-    title: "Total Revenue",
-    value: 14820,
+    title: "DAILY REVENUE",
+    value: 128430,
     prefix: "$",
-    change: "+12%",
+    change: "+14.2%",
     changeType: "positive",
     color: "cyan",
-    subtitle: "vs yesterday",
     icon: TrendingUp,
   },
   {
-    title: "Occupancy",
-    value: 87,
+    title: "ROOM OCCUPANCY",
+    value: 94,
     suffix: "%",
-    change: "87/100 rooms",
+    change: "87/100",
     changeType: "positive",
-    color: "green",
+    color: "cyan",
     icon: Activity,
   },
   {
-    title: "Active Staff",
+    title: "ACTIVE NETWORK",
     value: 142,
-    change: "on duty now",
+    suffix: " Staff",
+    change: "Live Now",
     changeType: "positive",
     color: "green",
     icon: Zap,
   },
   {
-    title: "Open Issues",
-    value: 7,
-    change: "3 critical",
-    changeType: "warning",
-    color: "amber",
-    icon: AlertTriangle,
-  },
-  {
-    title: "Guest Rating",
-    value: 4.8,
-    decimals: 1,
-    change: "",
+    title: "GUEST SAT.",
+    value: 4.92,
+    decimals: 2,
+    change: "Global Top 1%",
     changeType: "positive",
     color: "green",
-    showStar: true,
     icon: Star,
   },
 ];
@@ -120,58 +111,44 @@ const occupancyData = Array.from({ length: 30 }, (_, i) => {
 export function OverviewSection() {
   return (
     <div className="space-y-6">
-      {/* KPI Cards Row - Premium 3D hover */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      {/* KPI Cards Row - Matching screenshot layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiCards.map((kpi, index) => {
-          const Icon = kpi.icon;
           return (
             <Card
               key={kpi.title}
-              className="glass-card hover-lift-3d fade-up overflow-hidden relative group"
+              className="glass-card hover-lift fade-up overflow-hidden relative group"
               style={{ ["--i" as string]: index }}
             >
-              {/* Subtle gradient overlay on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                kpi.color === "cyan" ? "from-cyan/5 to-transparent" :
-                kpi.color === "green" ? "from-green/5 to-transparent" :
-                kpi.color === "amber" ? "from-amber/5 to-transparent" :
-                "from-red/5 to-transparent"
-              }`} />
+              {/* Cyan border glow on right side */}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-full bg-cyan/30" />
               
               <CardContent className="p-5 relative">
-                <div className="flex items-start justify-between">
-                  <div className="min-w-0 flex-1">
-                    <p className="stat-label mb-2">
-                      {kpi.title}
-                    </p>
-                    <div className="flex items-baseline gap-2">
-                      <p className={`stat-value tabular-nums text-${kpi.color}`}>
-                        <CountUp
-                          end={kpi.value}
-                          prefix={kpi.prefix}
-                          suffix={kpi.suffix}
-                          decimals={kpi.decimals ?? 0}
-                          delay={index * 100}
-                          duration={1400}
-                        />
-                      </p>
-                      {kpi.showStar && (
-                        <Star className="w-5 h-5 text-amber fill-amber -translate-y-0.5" />
-                      )}
-                    </div>
-                    <p className={`text-xs mt-2 tabular-nums font-medium ${
-                      kpi.changeType === "positive" ? "text-green" :
-                      kpi.changeType === "warning" ? "text-amber" : "text-red"
-                    }`}>
-                      {kpi.change}
-                      {kpi.subtitle && <span className="text-muted-foreground/60"> {kpi.subtitle}</span>}
-                    </p>
-                  </div>
-                  {Icon && (
-                    <div className={`p-2 rounded-lg bg-${kpi.color}/10 text-${kpi.color}`}>
-                      <Icon className="w-4 h-4" />
-                    </div>
-                  )}
+                <div className="space-y-3">
+                  {/* Label */}
+                  <p className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground/70 font-medium font-mono">
+                    {kpi.title}
+                  </p>
+                  
+                  {/* Value - Large monospace */}
+                  <p className="text-3xl lg:text-4xl font-bold font-mono tracking-tight text-foreground">
+                    <CountUp
+                      end={kpi.value}
+                      prefix={kpi.prefix}
+                      suffix={kpi.suffix}
+                      decimals={kpi.decimals ?? 0}
+                      delay={index * 100}
+                      duration={1400}
+                    />
+                  </p>
+                  
+                  {/* Change indicator */}
+                  <p className={`text-sm font-medium ${
+                    kpi.changeType === "positive" ? "text-cyan" :
+                    kpi.changeType === "warning" ? "text-amber" : "text-red"
+                  }`}>
+                    {kpi.change}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -181,15 +158,14 @@ export function OverviewSection() {
 
       {/* Row 2: Activity Feed, Department Performance, Zuri's Thought */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Live Activity Feed - 40% */}
+        {/* Real-Time Neural Feed - 40% */}
         <Card className="glass-card hover-lift fade-up lg:col-span-5 shimmer" style={{ ["--i" as string]: 5 }}>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold flex items-center gap-2.5">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green opacity-75 glow-pulse" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green" />
-              </span>
-              <span className="uppercase tracking-[0.08em] text-xs">Live Activity</span>
+              <svg className="w-4 h-4 text-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M2 12h4l3-9 4 18 3-9h6" />
+              </svg>
+              <span className="uppercase tracking-[0.08em] text-xs font-mono font-bold">Real-Time Neural Feed</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-0.5 max-h-[320px] overflow-y-auto pr-2">
