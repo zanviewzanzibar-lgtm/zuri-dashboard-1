@@ -79,7 +79,7 @@ export default function DashboardPage() {
       {/* Mobile Navigation */}
       <MobileNav
         isOpen={mobileNavOpen}
-        onClose={() => setMobileNavOpen(false)}
+        onOpenChange={setMobileNavOpen}
         activeSection={activeSection}
         onSectionChange={(section) => {
           setActiveSection(section)
