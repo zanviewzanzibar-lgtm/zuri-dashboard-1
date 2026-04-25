@@ -157,13 +157,147 @@
   
   html {
     background: var(--background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
   }
   
   body {
     @apply bg-background text-foreground font-sans;
     background: linear-gradient(135deg, #0a1628 0%, #0d1d33 50%, #0a1628 100%);
     min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
   }
+
+  /* ============================================
+     UNIFIED TYPOGRAPHY SYSTEM
+     ============================================ */
+
+  /* Page-level heading — "Overview" style */
+  h1, .text-h1 {
+    @apply font-sans font-bold text-foreground;
+    font-size: 1.875rem; /* 30px */
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 1024px) {
+    h1, .text-h1 {
+      font-size: 2.25rem; /* 36px */
+    }
+  }
+
+  /* Section heading — card titles like "Real-Time Neural Feed" */
+  h2, .text-h2 {
+    @apply font-sans font-bold text-foreground;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  /* Sub-section heading */
+  h3, .text-h3 {
+    @apply font-sans font-semibold text-foreground;
+    font-size: 1rem; /* 16px */
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+  }
+
+  /* Body text */
+  p {
+    font-family: var(--font-sans);
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITY CLASSES
+   ============================================ */
+
+/* Display number - large stat values like "$128,430", "94%", "142 Staff", "4.92" */
+.text-stat {
+  @apply font-sans font-bold text-foreground;
+  font-size: 1.875rem; /* 30px */
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 1024px) {
+  .text-stat {
+    font-size: 2.25rem; /* 36px */
+  }
+}
+
+/* Stat label - small uppercase tracked labels like "DAILY REVENUE" */
+.text-label {
+  @apply font-sans font-semibold uppercase;
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+}
+
+/* Tiny technical label - status codes, version */
+.text-tech {
+  @apply font-mono uppercase;
+  font-size: 0.625rem; /* 10px */
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+}
+
+/* Time / clock display */
+.text-time {
+  @apply font-mono font-bold tabular-nums;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 640px) {
+  .text-time {
+    font-size: 1.875rem; /* 30px */
+  }
+}
+
+/* Body small */
+.text-body-sm {
+  @apply font-sans;
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.5;
+}
+
+/* Caption / meta */
+.text-caption {
+  @apply font-sans;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+/* Nav item label */
+.text-nav {
+  @apply font-sans font-medium;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+/* Brand - "ZURI AI" wordmark */
+.text-brand {
+  @apply font-sans font-bold;
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+/* Brand subtitle - "GRAND AZURE" */
+.text-brand-sub {
+  @apply font-sans font-semibold uppercase;
+  font-size: 0.625rem; /* 10px */
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
 }
 
 /* Glass card effect */
@@ -324,15 +458,14 @@
   }
 }
 
-/* Stat label styling */
+/* Legacy stat label - alias to new system */
 .stat-label {
-  @apply text-xs uppercase tracking-widest text-muted-foreground font-medium;
-  letter-spacing: 0.1em;
+  @apply text-label;
 }
 
-/* Stat value styling - monospace for numbers */
+/* Legacy stat value - now uses sans-serif */
 .stat-value {
-  @apply text-2xl lg:text-3xl font-bold font-mono tracking-tight;
+  @apply text-stat;
 }
 
 /* Green glow */

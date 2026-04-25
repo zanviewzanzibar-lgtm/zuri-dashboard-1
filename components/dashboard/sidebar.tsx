@@ -66,8 +66,8 @@ export function Sidebar({
           </div>
           {!collapsed && (
             <div className="slide-in-left">
-              <h1 className="font-bold text-lg text-foreground tracking-tight font-mono">ZURI AI</h1>
-              <p className="text-[10px] uppercase tracking-[0.15em] text-cyan font-medium">GRAND AZURE</p>
+              <h1 className="text-brand text-foreground">ZURI AI</h1>
+              <p className="text-brand-sub mt-0.5">GRAND AZURE</p>
             </div>
           )}
         </div>
@@ -115,8 +115,8 @@ export function Sidebar({
                   
                   {!collapsed && (
                     <span className={cn(
-                      "text-sm font-medium truncate transition-colors duration-300",
-                      isActive && "text-cyan"
+                      "text-nav truncate transition-colors duration-300",
+                      isActive ? "text-cyan font-semibold" : "text-muted-foreground"
                     )}>
                       {item.label}
                     </span>
@@ -142,7 +142,7 @@ export function Sidebar({
           ) : (
             <>
               <ChevronLeft className="w-5 h-5" />
-              <span className="text-sm font-medium">Collapse</span>
+              <span className="text-nav">Collapse</span>
             </>
           )}
         </button>

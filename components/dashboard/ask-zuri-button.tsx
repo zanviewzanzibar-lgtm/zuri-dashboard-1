@@ -7,8 +7,8 @@ export function AskZuriButton() {
     <div className="fixed bottom-20 lg:bottom-6 right-4 lg:right-6 z-50 flex items-center gap-3">
       {/* Version badge */}
       <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/80 backdrop-blur-sm border border-border">
-        <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse" />
-        <span className="text-xs font-mono text-muted-foreground tracking-wide">V2.4_BETA</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse flex-shrink-0" />
+        <span className="text-tech text-muted-foreground/80">V2.4_BETA</span>
       </div>
       
       {/* Mic button */}

@@ -70,12 +70,12 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
         </button>
         
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold text-foreground tracking-tight">
+          <h1 className="text-h1">
             {sectionTitles[activeSection] || "Dashboard"}
-          </h2>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-green" />
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60 font-mono">
+          </h1>
+          <div className="flex items-center gap-2 mt-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-green flex-shrink-0" />
+            <span className="text-tech text-muted-foreground/70">
               SYSTEMS NOMINAL // ZANZIBAR NODE 01
             </span>
           </div>
@@ -84,10 +84,10 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
 
       {/* Center - Date/Time (hidden on very small screens) */}
       <div className="hidden sm:flex flex-col items-center">
-        <div className="text-xl sm:text-3xl font-mono font-bold text-cyan tabular-nums tracking-wide text-glow-cyan">
+        <div className="text-time text-cyan text-glow-cyan">
           {formatTime(currentTime)}
         </div>
-        <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70 font-medium mt-0.5">
+        <div className="text-tech text-muted-foreground/70 mt-1">
           {formatDate(currentTime).toUpperCase()}
         </div>
       </div>
@@ -100,13 +100,13 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
             <span className="absolute inline-flex h-full w-full rounded-full bg-red opacity-75 glow-pulse" />
             <span className="relative inline-flex rounded-full h-1.5 sm:h-2 w-1.5 sm:w-2 bg-red" />
           </span>
-          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] text-red">Live</span>
+          <span className="text-tech text-red font-bold">Live</span>
         </div>
 
         {/* Occupancy - hidden on mobile */}
-        <div className="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-green/5 border border-green/20 glow-green">
-          <span className="text-sm font-semibold tabular-nums text-green">87</span>
-          <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60">/100</span>
+        <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-green/5 border border-green/20 glow-green">
+          <span className="text-body-sm font-bold tabular-nums text-green">87</span>
+          <span className="text-tech text-muted-foreground/60">/100</span>
         </div>
 
         {/* Weather - hidden on small mobile */}
@@ -116,7 +116,7 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
           ) : (
             <CloudSun className="w-4 h-4 text-muted-foreground" />
           )}
-          <span className="text-sm font-medium tabular-nums">28°C</span>
+          <span className="text-body-sm font-medium tabular-nums">28°C</span>
         </div>
 
         {/* User Avatar */}
@@ -124,14 +124,14 @@ export function Header({ activeSection, onMenuClick }: HeaderProps) {
           <div className="relative group">
             <div className="absolute -inset-0.5 rounded-full bg-cyan/20 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
             <Avatar className="relative h-8 w-8 sm:h-9 sm:w-9 border-2 border-white/10 group-hover:border-cyan/30 transition-colors duration-300">
-              <AvatarFallback className="bg-gradient-to-br from-cyan/20 to-cyan/5 text-cyan text-xs sm:text-sm font-semibold">
+              <AvatarFallback className="bg-gradient-to-br from-cyan/20 to-cyan/5 text-cyan text-body-sm font-bold">
                 RE
               </AvatarFallback>
             </Avatar>
           </div>
           <div className="hidden xl:block">
-            <p className="text-sm font-medium text-foreground">Rer</p>
-            <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">Owner</p>
+            <p className="text-body-sm font-semibold text-foreground">Admin</p>
+            <p className="text-tech text-muted-foreground/60">Owner</p>
           </div>
         </div>
       </div>

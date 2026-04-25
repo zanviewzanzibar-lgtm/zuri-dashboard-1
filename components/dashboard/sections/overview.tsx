@@ -126,12 +126,12 @@ export function OverviewSection() {
               <CardContent className="p-5 relative">
                 <div className="space-y-3">
                   {/* Label */}
-                  <p className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground/70 font-medium font-mono">
+                  <p className="text-label">
                     {kpi.title}
                   </p>
                   
-                  {/* Value - Large monospace */}
-                  <p className="text-3xl lg:text-4xl font-bold font-mono tracking-tight text-foreground">
+                  {/* Value - Large sans-serif bold (matches screenshot) */}
+                  <p className="text-stat">
                     <CountUp
                       end={kpi.value}
                       prefix={kpi.prefix}
@@ -143,7 +143,7 @@ export function OverviewSection() {
                   </p>
                   
                   {/* Change indicator */}
-                  <p className={`text-sm font-medium ${
+                  <p className={`text-body-sm font-semibold ${
                     kpi.changeType === "positive" ? "text-cyan" :
                     kpi.changeType === "warning" ? "text-amber" : "text-red"
                   }`}>
@@ -161,11 +161,11 @@ export function OverviewSection() {
         {/* Real-Time Neural Feed - 40% */}
         <Card className="glass-card hover-lift fade-up lg:col-span-5 shimmer" style={{ ["--i" as string]: 5 }}>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-semibold flex items-center gap-2.5">
-              <svg className="w-4 h-4 text-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <CardTitle className="flex items-center gap-2.5">
+              <svg className="w-4 h-4 text-cyan flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M2 12h4l3-9 4 18 3-9h6" />
               </svg>
-              <span className="uppercase tracking-[0.08em] text-xs font-mono font-bold">Real-Time Neural Feed</span>
+              <span className="text-h2">Real-Time Neural Feed</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-0.5 max-h-[320px] overflow-y-auto pr-2">
@@ -181,10 +181,10 @@ export function OverviewSection() {
                   }`}
                 />
                 <div className="flex-1 min-w-0">
-                  <span className="text-[10px] text-muted-foreground/50 font-mono tabular-nums uppercase tracking-wider">
+                  <span className="text-tech text-muted-foreground/60">
                     {item.time}
                   </span>
-                  <p className="text-sm text-foreground/90 leading-relaxed">{item.message}</p>
+                  <p className="text-body-sm text-foreground/90 leading-relaxed">{item.message}</p>
                 </div>
               </div>
             ))}
@@ -194,7 +194,7 @@ export function OverviewSection() {
         {/* Department Performance - 35% */}
         <Card className="glass-card hover-lift fade-up lg:col-span-4" style={{ ["--i" as string]: 6 }}>
           <CardHeader className="pb-3">
-            <CardTitle className="text-xs font-semibold uppercase tracking-[0.08em]">Department Performance</CardTitle>
+            <CardTitle><span className="text-h2">Department Performance</span></CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -204,7 +204,7 @@ export function OverviewSection() {
                   className="flex items-center gap-3 fade-up"
                   style={{ ["--i" as string]: i + 7 }}
                 >
-                  <span className="text-[11px] text-muted-foreground/70 w-24 truncate font-medium">{dept.name}</span>
+                  <span className="text-body-sm text-muted-foreground/80 w-24 truncate">{dept.name}</span>
                   <div className="flex-1 h-2 bg-white/[0.04] rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-1000 ease-out"
@@ -217,7 +217,7 @@ export function OverviewSection() {
                     />
                   </div>
                   <span
-                    className={`text-xs font-semibold w-10 text-right tabular-nums ${
+                    className={`text-body-sm font-semibold w-10 text-right tabular-nums ${
                       dept.value >= 85 ? "text-green" : "text-amber"
                     }`}
                   >
@@ -235,19 +235,19 @@ export function OverviewSection() {
           style={{ ["--i" as string]: 7 }}
         >
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-semibold text-cyan flex items-center gap-2 uppercase tracking-[0.08em]">
-              <span className="relative flex h-2 w-2">
+            <CardTitle className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-cyan opacity-60 glow-pulse" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan" />
               </span>
-              {"Zuri's Thought"}
+              <span className="text-h2 text-cyan">{"Zuri's Thought"}</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm italic text-muted-foreground/80 leading-relaxed">
+            <p className="text-body-sm italic text-muted-foreground/80 leading-relaxed">
               {"\"Tonight I noticed the night guard Hassan missed his 2am check-in for the third time this week. I flagged it immediately and the owner was notified. This pattern suggests either fatigue or disengagement — I've added a coaching note to tomorrow's briefing.\""}
             </p>
-            <p className="text-[10px] text-cyan/60 mt-4 font-mono tabular-nums uppercase tracking-wider">
+            <p className="text-tech text-cyan/70 mt-4">
               — 03:00 AM journal
             </p>
           </CardContent>
@@ -259,7 +259,7 @@ export function OverviewSection() {
         {/* Revenue Chart with Area gradient */}
         <Card className="glass-card hover-lift fade-up" style={{ ["--i" as string]: 8 }}>
           <CardHeader className="pb-3">
-            <CardTitle className="text-xs font-semibold uppercase tracking-[0.08em]">7-Day Revenue</CardTitle>
+            <CardTitle><span className="text-h2">7-Day Revenue</span></CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[220px]">
@@ -312,11 +312,11 @@ export function OverviewSection() {
             <div className="flex items-center gap-6 mt-4 justify-center">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-0.5 bg-cyan rounded-full" />
-                <span className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">Revenue</span>
+                <span className="text-tech text-muted-foreground/70">Revenue</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-0.5 bg-amber/50 rounded-full border-dashed" style={{ borderTop: "1px dashed var(--amber)" }} />
-                <span className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">Target</span>
+                <span className="text-tech text-muted-foreground/70">Target</span>
               </div>
             </div>
           </CardContent>
@@ -325,7 +325,7 @@ export function OverviewSection() {
         {/* Occupancy Heatmap */}
         <Card className="glass-card hover-lift fade-up" style={{ ["--i" as string]: 9 }}>
           <CardHeader className="pb-3">
-            <CardTitle className="text-xs font-semibold uppercase tracking-[0.08em]">30-Day Occupancy</CardTitle>
+            <CardTitle><span className="text-h2">30-Day Occupancy</span></CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-10 gap-1.5">
@@ -352,15 +352,15 @@ export function OverviewSection() {
             <div className="flex items-center justify-center gap-6 mt-4">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded bg-red/60" />
-                <span className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">{"<75%"}</span>
+                <span className="text-tech text-muted-foreground/70">{"<75%"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded bg-amber/60" />
-                <span className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">75-89%</span>
+                <span className="text-tech text-muted-foreground/70">75-89%</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded bg-green/60" />
-                <span className="text-[10px] text-muted-foreground/60 uppercase tracking-wider">90%+</span>
+                <span className="text-tech text-muted-foreground/70">90%+</span>
               </div>
             </div>
           </CardContent>

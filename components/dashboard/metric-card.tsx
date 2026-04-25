@@ -37,7 +37,7 @@ export function MetricCard({
 
       <div className="relative">
         <div className="flex items-start justify-between mb-3">
-          <span className="text-[11px] uppercase tracking-[0.08em] text-muted-foreground/80 font-medium">
+          <span className="text-label">
             {title}
           </span>
           <div className="w-9 h-9 rounded-lg bg-white/[0.04] flex items-center justify-center group-hover:bg-cyan/10 transition-colors duration-300">
@@ -46,12 +46,12 @@ export function MetricCard({
         </div>
 
         <div className="flex items-end gap-3">
-          <span className="text-2xl lg:text-3xl font-semibold text-foreground tracking-tight tabular-nums">
+          <span className="text-stat tabular-nums">
             {value}
           </span>
           <div
             className={cn(
-              "flex items-center gap-1 text-sm font-medium mb-1 tabular-nums",
+              "flex items-center gap-1 text-body-sm font-semibold mb-1.5 tabular-nums",
               changeType === "positive" && "text-green",
               changeType === "negative" && "text-red",
               changeType === "neutral" && "text-muted-foreground"

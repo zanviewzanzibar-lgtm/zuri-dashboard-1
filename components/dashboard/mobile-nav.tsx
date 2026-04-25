@@ -86,7 +86,7 @@ export function MobileNav({
                   )}
                   <Icon className={cn("relative w-5 h-5", isActive && "text-cyan")} />
                 </div>
-                <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
+                <span className="text-[11px] font-semibold">{item.label}</span>
               </button>
             );
           })}
@@ -100,7 +100,7 @@ export function MobileNav({
               <span className="w-1 h-1 rounded-full bg-current" />
               <span className="w-1 h-1 rounded-full bg-current" />
             </div>
-            <span className="text-[10px] font-medium tracking-wide">More</span>
+            <span className="text-[11px] font-semibold">More</span>
           </button>
         </div>
       </nav>
@@ -140,10 +140,8 @@ export function MobileNav({
                 </div>
               </div>
               <div>
-                <h2 className="font-bold text-lg text-foreground tracking-tight font-mono">ZURI AI</h2>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-cyan font-medium">
-                  GRAND AZURE
-                </p>
+                <h2 className="text-brand text-foreground">ZURI AI</h2>
+                <p className="text-brand-sub mt-0.5">GRAND AZURE</p>
               </div>
             </div>
             <button
@@ -190,7 +188,7 @@ export function MobileNav({
                     </div>
                     <span
                       className={cn(
-                        "text-xs font-medium text-center",
+                        "text-body-sm font-semibold text-center",
                         isActive ? "text-cyan" : "text-muted-foreground"
                       )}
                     >
